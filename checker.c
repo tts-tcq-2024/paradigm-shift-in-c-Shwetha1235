@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <assert.h>
-
+// test commit
 int batteryIsOk(float temperature, float soc, float chargeRate) {
   if(temperature < 0 || temperature > 45) {
     printf("Temperature out of range!\n");
