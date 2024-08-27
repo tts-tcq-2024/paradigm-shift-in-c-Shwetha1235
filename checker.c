@@ -1,12 +1,7 @@
-
-Sure, I'll make the necessary improvements to your original code while maintaining its structure as much as possible:
-
-c
-Copy code
 #include <stdio.h>
 #include <assert.h>
 
-// Function to check if a parameter is within range and print appropriate message
+// Function to check if a parameter is within range and report the issue
 int checkParameterInRange(float value, float min, float max, const char *parameterName) {
     if(value < min) {
         printf("%s below minimum limit: %.2f (Min: %.2f)\n", parameterName, value, min);
@@ -19,14 +14,14 @@ int checkParameterInRange(float value, float min, float max, const char *paramet
     return 1;
 }
 
-int batteryIsOk(float temperature, float soc, float chargeRate , const char *manufacturer) {
-    int isTemperatureOk = checkParameterInRange(temperature, 0, 55, "Temperature");
-    int isSocOk = checkParameterInRange(soc, 20, 80, "State of Charge");
-    int isChargeRateOk = checkParameterInRange(chargeRate, 0, 1.0, "Charge Rate");
-
-    return isTemperatureOk && isSocOk && isChargeRateOk;
+// Function to check overall battery health
+int batteryIsOk(float temperature, float soc, float chargeRate, const char *manufacturer) {
+    return checkParameterInRange(temperature, 0, 55, "Temperature") &
+           checkParameterInRange(soc, 20, 80, "State of Charge") &
+           checkParameterInRange(chargeRate, 0, 1.0, "Charge Rate");
 }
 
+// Main function to test the battery health
 int main() {
     assert(batteryIsOk(25, 70, 0.7, "Manufacturer1"));
     assert(!batteryIsOk(60, 70, 0.7, "Manufacturer1")); // Temperature out of range (above)
@@ -35,5 +30,6 @@ int main() {
     assert(!batteryIsOk(25, 15, 0.7, "Manufacturer1")); // SOC out of range (below)
     assert(!batteryIsOk(25, 70, 1.2, "Manufacturer1")); // Charge rate out of range (above)
     assert(!batteryIsOk(25, 70, -0.1, "Manufacturer1")); // Charge rate out of range (below)
+    printf("All tests passed.\n");
     return 0;
 }
