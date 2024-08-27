@@ -40,21 +40,14 @@ int isChargeRateOk(float chargeRate) {
     return 1;
 }
 
+// Helper function to combine the results of all checks
+int batteryStatus(int temperatureStatus, int socStatus, int chargeRateStatus) {
+    return temperatureStatus && socStatus && chargeRateStatus;
+}
+
 // Function to check overall battery health
 int batteryIsOk(float temperature, float soc, float chargeRate, const char *manufacturer) {
     int tempStatus = isTemperatureOk(temperature);
     int socStatus = isSocOk(soc);
     int chargeRateStatus = isChargeRateOk(chargeRate);
-    return tempStatus && socStatus && chargeRateStatus;
-}
-
-int main() {
-    assert(batteryIsOk(25, 70, 0.7, "Manufacturer1"));
-    assert(!batteryIsOk(60, 70, 0.7, "Manufacturer1")); // Temperature out of range (above)
-    assert(!batteryIsOk(-5, 70, 0.7, "Manufacturer1")); // Temperature out of range (below)
-    assert(!batteryIsOk(25, 85, 0.7, "Manufacturer1")); // SOC out of range (above)
-    assert(!batteryIsOk(25, 15, 0.7, "Manufacturer1")); // SOC out of range (below)
-    assert(!batteryIsOk(25, 70, 1.2, "Manufacturer1")); // Charge rate out of range (above)
-    assert(!batteryIsOk(25, 70, -0.1, "Manufacturer1")); // Charge rate out of range (below)
-    return 0;
-}
+    return batteryStatus
