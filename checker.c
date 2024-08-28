@@ -30,7 +30,7 @@ int batteryIsOk(float temperature, float soc, float chargeRate) {
  
 int main() {
 // Temperature < 0, rest optimal
-  assert(!battery_is_ok(-1, 70, 0.1));
+  assert(!battery_is_ok(-0.1, 70, 0.1));
   // Temperature > 45, rest optimal
   assert(!battery_is_ok(50.1, 70, 0.3));
   // SOC < 20, rest optimal
