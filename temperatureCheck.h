@@ -1,5 +1,5 @@
 #include "printMessage.h"
-#include "batteryStatusMessageList.h"
+#include "batteryStatusMessages.h"
 
 int temp_Ok(float temperature,int language){
     if(temperature < 0 || temperature > 45){
