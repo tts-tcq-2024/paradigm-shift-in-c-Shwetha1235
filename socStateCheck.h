@@ -1,4 +1,4 @@
-int Soc_Ok(float soc,int language) {
+int soc_Ok(float soc,int language) {
    if (soc < 20 || soc > 80) {
         printMessage(socMessage[language]);
        return 0; 
