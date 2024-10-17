@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <assert.h>
 #include <stdbool.h>
+#include "temperatureCheck.h"
+#include "chargeRateCheck.h"
+#include "socStateCheck.h"
+#include "testPrintMessage.h"
 
 int batteryIsOk(float temperature, float soc, float charge_rate,int language) {
    return temp_Ok(temperature,language) && soc_Ok(soc,language) && charge_Ok(charge_rate,language);
