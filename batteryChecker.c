@@ -28,6 +28,10 @@ int batteryIsOk(float temperature, float soc, float chargeRate) {
     }
     return 1;
 }
+
+int checkkk(){
+ batteryIsOk(25, 70, 0.7);
+}
  
 int main() {
     assert(batteryIsOk(25, 70, 0.7));
