@@ -31,6 +31,7 @@ int batteryIsOk(float temperature, float soc, float chargeRate) {
 
 int checkkk(){
  batteryIsOk(25, 70, 0.7);
+
 }
  
 int main() {
